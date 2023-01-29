@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content_title %}
+<h1>{{ post.title }}</h1>
+{% endblock %}
+
+{% block content %}
+<p>Страна: {{ post.country }}
+<p>Город: {{ post.city }}
+<p>График: {{ post.schedule }}
+<p>Зарплата: {{ post.salary }}
+<p>Контакты: {{ post.contacts }}
+<p>Описание: {{ post.body }}
+
+{% if current_user.is_creator or current_user.is_admin %}
+<div class="container-end">
+    <div class="row row-cols-auto">
+        <div class="col-md-auto">
+            <form action="{{url_for('posts.edit_post', slug=post.slug)}}" method="get">
+                <button type="submit" class="btn btn-success">Edit</button>
+            </form>
+        </div>
+        <div class="col-md-auto">
+            <form action="{{url_for('posts.delete_post', slug=post.slug)}}" method="post">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

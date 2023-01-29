@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content_title %}
+    <h1>Страница регистрации</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="POST" action="">
+        <p>{{ form.hidden_tag() }}
+        <p>{{ form.login }}
+        <p>{{ form.password }}
+        <p>{{ form.submit }}
+    </form>
+    <p> <a href="{{ url_for('auth.login') }}">Уже есть аккаунт? Войти!</a> </p>
+{% endblock %}
