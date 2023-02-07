@@ -5,7 +5,7 @@ from flask import request
 from flask import redirect
 from flask import url_for
 
-from flask_security import login_required
+from flask_login import login_required
 
 from models import Post
 from posts.templates.forms import PostForm
