@@ -1,0 +1,122 @@
+.product-card:hover {
+    box-shadow: 0 14px 30px -15px rgba(0,0,0,0.75)
+}
+
+.product-thumb a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    padding: 20px;
+}
+
+.product-thumb img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.product-details {
+    padding: 20px;
+}
+
+.product-details h4 a {
+    font-weight: 500;
+    display: block;
+    height: 60px;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.product-details p {
+   font-size: 15px;
+   margin-bottom: 20px;
+   color: #555;
+   height: 44px;
+   overflow: hidden;
+}
+
+.product-bottom-details {
+    overflow: hidden;
+    border-top: 2px solid #eee;
+    padding-top: 20px;
+}
+.product-price {
+    font-size: 18px;
+    color: #ee6e73;
+    font-weight: 600;
+}
+
+.product-price small{
+    color: #ccc;
+    font-weight: 400;
+    text-decoration: line-through;
+    margin-right: 5px;
+}
+
+
+.product-links a {
+    font-size: 20px;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.navbar-brand {
+    padding: 10px
+}
+
+.nav-item {
+    padding: 10px
+}
+
+
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.topnav-right {
+  float: right;
+}
+
+[data-tooltip] {
+    position: relative; /* Относительное позиционирование */
+   }
+
+[data-tooltip]:after {
+    content: attr(data-tooltip); /* Выводим текст */
+    position: relative; /* Абсолютное позиционирование */
+    width: 300px; /* Ширина подсказки */
+    left: 10px; top: 0; /* Положение подсказки */
+    background: #3989c9; /* Синий цвет фона */
+    color: #fff; /* Цвет текста */
+    padding: 0.5em; /* Поля вокруг текста */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Параметры тени */
+    pointer-events: none; /* Подсказка */
+    opacity: 0; /* Подсказка невидима */
+    transition: 0.5s; /* Время появления подсказки */
+}
+
+[data-tooltip]:hover::after {
+    opacity: 1; /* Показываем подсказку */
+    top: 0; /* Положение подсказки */
+}

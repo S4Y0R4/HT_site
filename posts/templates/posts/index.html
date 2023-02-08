@@ -1,44 +1,48 @@
 {% extends 'base.html' %}
 
 {% block content_title %}
-<h1>Список вакансий</h1>
+<div class="container">
+    <h1>Список вакансий</h1>
+</div>
 {% endblock %}
 
 {% block content %}
-<div class='col-md-4'>
-    <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Поиск по вакансиям" name=q aria-label="Search"
-               value="{{ request.args.get('q','') }}">
-        <button class="btn btn-outline-success me-2" type="submit">Search</button>
-    </form>
-</div>
+<div class="container">
+    <div class='col-md-4'>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Поиск по вакансиям" name=q aria-label="Search"
+                   value="{{ request.args.get('q','') }}">
+            <button class="btn btn-outline-success me-2" type="submit">Search</button>
+        </form>
+    </div>
 
-<div>
-    {% for post in pages.items %}
-    <label><a href="{{url_for('posts.post_detail', slug=post.slug) }}">{{ post.title }}</a></label>
-    {% if post.body %}
-    <p>{{post.body|safe|truncate(750, True)}}</p>
-    {% else %}
-    <p> {{post.body}}</p>
-    {% endif %}
-    {% endfor %}
-</div>
-
-<nav>
-    <ul class="pagination">
-        <li {% if not pages.has_prev %} class='page-item disabled' {% endif %}>
-            <a class="page-link" href="./?page={{ pages.prev_num }}" tabindex="-1">Previous</a>
-        </li>
-
-        {% for page in pages.iter_pages() %}
-        <li {% if page==pages.page %} class="page-item active" {% endif %}>
-            <a class="page-link" href="./?page={{page}}">{{page}}<span class="sr-only"></span></a>
-        </li>
+    <div>
+        {% for post in pages.items %}
+        <label><a href="{{url_for('posts.post_detail', slug=post.slug) }}">{{ post.title }}</a></label>
+        {% if post.body %}
+        <p>{{post.body|safe|truncate(750, True)}}</p>
+        {% else %}
+        <p> {{post.body}}</p>
+        {% endif %}
         {% endfor %}
+    </div>
 
-        <li {% if not pages.has_next %} class='page-item disabled' {% endif %}>
-            <a class="page-link" href="./?page={{ pages.next_num }}" tabindex="-1">Next</a>
-        </li>
-    </ul>
-</nav>
+    <nav>
+        <ul class="pagination">
+            <li {% if not pages.has_prev %} class='page-item disabled' {% endif %}>
+                <a class="page-link" href="./?page={{ pages.prev_num }}" tabindex="-1">Previous</a>
+            </li>
+
+            {% for page in pages.iter_pages() %}
+            <li {% if page==pages.page %} class="page-item active" {% endif %}>
+                <a class="page-link" href="./?page={{page}}">{{page}}<span class="sr-only"></span></a>
+            </li>
+            {% endfor %}
+
+            <li {% if not pages.has_next %} class='page-item disabled' {% endif %}>
+                <a class="page-link" href="./?page={{ pages.next_num }}" tabindex="-1">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
 {% endblock %}

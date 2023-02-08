@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content_title %}
-<h1>Edit post</h1>
+<div class="container">
+    <h1>Редактирование вакансии</h1>
+</div>
 {% endblock %}
 
 {% block content %}
-<div>
+<div class="container">
     <form action="{{url_for('posts.edit_post', slug=post.slug)}}" method="post">
         {% for field in form %}
         <div class='form-group'>

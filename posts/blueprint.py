@@ -8,7 +8,7 @@ from flask import url_for
 from flask_login import login_required
 
 from models import Post
-from posts.templates.forms import PostForm
+from posts.forms import PostForm
 from app import db
 
 posts = Blueprint('posts', __name__, template_folder='templates')

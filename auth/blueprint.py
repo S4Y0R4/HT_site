@@ -42,12 +42,11 @@ def logout():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        if not Users.query.filter_by(login=form.login.data).first():
-            hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf8')
-            new_user = Users(login=form.login.data, password=hashed_password)
-            db.session.add(new_user)
-            db.session.commit()
-            flash('Вы успешно зарегистрировались')
-            return redirect(url_for('auth.login'))
-
+            if not Users.query.filter_by(login=form.login.data).first():
+                hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf8')
+                new_user = Users(login=form.login.data, password=hashed_password, email=form.email.data)
+                db.session.add(new_user)
+                db.session.commit()
+                flash('Вы успешно зарегистрировались')
+                return redirect(url_for('auth.login'))
     return render_template('register.html', form=form, title='Страница регистрации')

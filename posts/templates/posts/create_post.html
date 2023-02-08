@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content_title %}
+<div class="container">
 <h1>New post</h1>
+    </div>
 {% endblock %}
 
 {% block content %}
-<div>
+<div class="container">
     <form action="{{url_for('posts.create_post')}}" method="post">
         {% for field in form %}
         <div class='form-group'>

@@ -40,6 +40,7 @@ class Users(db.Model, UserMixin):
     created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     is_admin = db.Column(db.Boolean, default=False)
     is_creator = db.Column(db.Boolean, default=False)
+    email = db.Column(db.String(30), nullable=False)
 
     def __repr__(self):
         return '<User id: {}, login: {}>'.format(self.id, self.login)
