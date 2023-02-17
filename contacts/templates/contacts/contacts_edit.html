@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content_title %}
+<div class="container">
+    <h1>Редактирование моих контактных данных</h1>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name_surname(size=64) }}<br>
+            {{ form.phone(size=64) }}<br>
+            {{ form.email(size=64) }}<br>
+            {{ form.telegram }}<br>
+            {{ form.viber }}<br>
+            {{ form.whatsapp }}
+            {{ form.submit() }}
+        </p>
+    </form>
+</div>
+{% endblock %}

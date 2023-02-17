@@ -10,12 +10,12 @@
 <div class="container">
     <form method="POST" action="">
         <p>{{ form.hidden_tag() }}</p>
-        <p>{{ form.email }} </p>
-        <p>{{ form.login }} </p>
-        <p>{{ form.password }}</p>
+        <p>{{ form.login(size=32) }} </p>
+        <p>{{ form.password(size=32) }}</p>
         <p>{{ form.submit }}</p>
         <p>{{ form.remember}}</p>
     </form>
     <p><a href="{{ url_for('auth.register') }}">Нет аккаунта? Зарегистрироваться.</a></p>
+    <p><a href="{{ url_for('auth.reset_password_request') }}">Сбросить пароль</a></p>
 </div>
 {% endblock %}

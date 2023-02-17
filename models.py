@@ -1,4 +1,7 @@
-from app import db
+from time import time
+
+import jwt
+from app import db, app
 import re
 from datetime import datetime
 from flask_login import UserMixin

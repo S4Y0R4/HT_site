@@ -16,20 +16,20 @@
     <p>Описание: {{ post.body }}
 
         {% if current_user.is_creator or current_user.is_admin %}
-        <div class="container-end">
-            <div class="row row-cols-auto">
-                <div class="col-md-auto">
-                    <form action="{{url_for('posts.edit_post', slug=post.slug)}}" method="get">
-                        <button type="submit" class="btn btn-success">Редактировать вакансию</button>
-                    </form>
-                </div>
-                <div class="col-md-auto">
-                    <form action="{{url_for('posts.delete_post', slug=post.slug)}}" method="post">
-                        <button type="submit" class="btn btn-danger">Удалить вакансию</button>
-                    </form>
-                </div>
+    <div class="container-end">
+        <div class="row row-cols-auto">
+            <div class="col-md-auto">
+                <form action="{{url_for('posts.edit_post', slug=post.slug)}}" method="get">
+                    <button type="submit" class="btn btn-success">Редактировать вакансию</button>
+                </form>
+            </div>
+            <div class="col-md-auto">
+                <form action="{{url_for('posts.delete_post', slug=post.slug)}}" method="post">
+                    <button type="submit" class="btn btn-danger">Удалить вакансию</button>
+                </form>
             </div>
         </div>
+    </div>
+    {% endif %}
 </div>
-{% endif %}
 {% endblock %}

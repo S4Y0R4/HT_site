@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content_title %}
+<div class="container">
+    <h1>Мои контакты</h1>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <p>Телеграмм: +48 730 938 769</p>
+    <p>Ватсап: +48 730 938 769</p>
+    <p>Вайбер: +48 730 938 769</p>
+    {% if current_user.is_creator or current_user.is_admin %}
+    <div class="container-end">
+        <div class="col-md-auto">
+            <form action="#" method="get">
+                <button type="submit" class="btn btn-success">Редактировать мои контакты</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

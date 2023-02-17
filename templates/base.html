@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Title</title>
+    <title>{{title}}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="{{url_for('static' , filename='css/style.css')}}">
@@ -13,10 +13,16 @@
 <div class="topnav">
     <div class="container">
         <a href="{{url_for('posts.index')}}">Главная</a>
-        <a href="{{url_for('my_contacts')}}">Мои контакты</a>
+        <a href="{{url_for('contacts.my_contacts')}}">Мои контакты</a>
         <div class="topnav-right">
-            {% if current_user.is_authenticated %}
+
+            {% if current_user.is_creator or current_user.is_admin %}
             <a href="{{url_for('posts.create_post')}}">Добавить новую вакансию</a>
+            {% endif %}
+            {% if current_user.is_admin%}
+            <a href="/admin">Админ-панель</a>
+            {% endif %}
+            {% if current_user.is_authenticated %}
             <a href="{{url_for('auth.logout')}}">Выйти</a>
             {% else %}
             <a href="{{url_for('auth.login')}}">Войти</a>
@@ -25,6 +31,13 @@
         </div>
     </div>
 </div>
+
+{% for msg in get_flashed_messages() %}
+<div class="container">
+    <div class="flash">{{msg}}</div>
+</div>
+{% endfor %}
+
 {% block content_title %}
 {% endblock %}
 

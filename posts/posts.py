@@ -78,6 +78,7 @@ def create_post():
                         contacts=contacts)
             db.session.add(post)
             db.session.commit()
+            flash('Вы успешно доабвили новую запись', 'success')
         except:
             flash('Что-то пошло не так, попробуйте снова', 'danger')
 
