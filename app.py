@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_babel import Babel
 
 from flask_migrate import Migrate
 
@@ -14,6 +15,8 @@ app.config.from_object(Configuration)
 
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
+
+babel = Babel(app)
 
 from models import *
 

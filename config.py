@@ -15,3 +15,4 @@ class Configuration(object):
     SQLAlCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = os.getenv('SECRET_KEY')
     SQLALCHEMY_ECHO = True
+    LANGUAGES = ['en', 'ru', 'pl']

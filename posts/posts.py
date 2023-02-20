@@ -41,16 +41,13 @@ def delete_post(slug):
         return redirect(url_for('posts.index'))
 
 
+
+
 @posts.route('/')
 def index():
-    query = request.args.get('q')
-
-    page = request.args.get('page')
-    if page and page.isdigit():
-        page = int(page)
-    else:
-        page = 1
-
+    query = request.args.get('search')
+    page = request.args.get('page', 1, type=int)
+    count_items = db.session.query(Post).count()
     if query:
         post = Post.query.filter(Post.title.contains(query))
     else:
@@ -58,7 +55,17 @@ def index():
 
     pages = post.paginate(page=page, per_page=5)
 
-    return render_template('posts/index.html', title="Вакансии", pages=pages)
+    return render_template('posts/index.html', title="Вакансии", pages=pages, count_items=count_items)
+
+
+@posts.context_processor
+def url_params():
+    """
+    Добавляет параметры поиска к ссылкам на другие страницы пагинации.
+    """
+    args = request.args.copy()
+    args.pop('page', None)
+    return dict(url_params=args)
 
 
 @posts.route('/create', methods=['POST', 'GET'])

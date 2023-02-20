@@ -10,13 +10,13 @@
 <div class="container">
     <div class='col-md-4'>
         <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Поиск по вакансиям" name=q aria-label="Search"
+            <input class="form-control me-2" type="search" placeholder="Поиск по вакансиям" name=search aria-label="Search"
                    value="{{ request.args.get('q','') }}">
             <button class="btn btn-outline-success me-2" type="submit">Search</button>
         </form>
     </div>
 
-    <div>
+    <div class="post-items">
         {% for post in pages.items %}
         <label><a href="{{url_for('posts.post_detail', slug=post.slug) }}">{{ post.title }}</a></label>
         {% if post.body %}
@@ -26,11 +26,11 @@
         {% endif %}
         {% endfor %}
     </div>
-
+    {% if count_items >= 5 %}
     <nav>
         <ul class="pagination">
             <li {% if not pages.has_prev %} class='page-item disabled' {% endif %}>
-                <a class="page-link" href="./?page={{ pages.prev_num }}" tabindex="-1">Previous</a>
+                <a class="page-link" href="./?page={{ pages.prev_num }}" tabindex="-1"><<</a>
             </li>
 
             {% for page in pages.iter_pages() %}
@@ -40,9 +40,10 @@
             {% endfor %}
 
             <li {% if not pages.has_next %} class='page-item disabled' {% endif %}>
-                <a class="page-link" href="./?page={{ pages.next_num }}" tabindex="-1">Next</a>
+                <a class="page-link" href="./?page={{ pages.next_num }}" tabindex="-1">>></a>
             </li>
         </ul>
     </nav>
+    {% endif %}
 </div>
 {% endblock %}
